@@ -8,9 +8,16 @@ let price = 0;
 
 
 function displayTeddies() {
-    let product = JSON.parse(localStorage.getItem("product"));
-    console.log(product)
-    product.forEach(teddy => {
+
+    
+    // let product = JSON.parse(localStorage.getItem("product"));
+    // console.log(product)
+    // product.forEach(teddy => {
+        for(let i = 0; i < localStorage.length; i++){
+            const key = localStorage.key(i);
+            let teddy = JSON.parse(localStorage.getItem(key)); 
+            console.log(teddy);
+
     let teddyCard = `<div class="col-12 col-lg-4 ">
                             <a href="/produit.html?id=${teddy._id}">
                                 <div class="card">
@@ -26,7 +33,7 @@ function displayTeddies() {
 
         // teddies.push(teddy._id);
         container.innerHTML += teddyCard; 
-    });
+    };
 }
 displayTeddies();
 
@@ -50,31 +57,31 @@ displayTeddies();
 })()
 
 
-const inputFirstName = document.querySelector('#validationCustom01');
-inputFirstName.addEventListener('input', function(e) {
-    let value = e.target.value;
-    console.log(value);
-        addFirstName("Prénom", JSON.stringify(value))
+// const inputFirstName = document.querySelector('#validationCustom01');
+// inputFirstName.addEventListener('input', function(e) {
+//     let value = e.target.value;
+//     console.log(value);
+//         addFirstName("Prénom", JSON.stringify(value))
 
-});
+// });
 
-function addFirstName(key, value) {
-    localStorage.setItem(key, value);
-};
-/*    */
-const inputLastName = document.querySelector('#validationCustom02');
-inputLastName.addEventListener('input', function(e) {
-    let value = e.target.value;
-    console.log(value);
-        addLastName("Nom", JSON.stringify(value))
+// function addFirstName(key, value) {
+//     localStorage.setItem(key, value);
+// };
+// /*    */
+// const inputLastName = document.querySelector('#validationCustom02');
+// inputLastName.addEventListener('input', function(e) {
+//     let value = e.target.value;
+//     console.log(value);
+//         addLastName("Nom", JSON.stringify(value))
 
-});
-function addLastName(key, value) {
-    localStorage.setItem(key, value);
-};
+// });
+// function addLastName(key, value) {
+//     localStorage.setItem(key, value);
+// };
 
 // const inputMail;
 // const inputState;
 // const inputCity;
 // const products = [//id des teddies];
-// const contact = {firstName, lastName, address, city et email, products};
+// const contact = {firstName, lastName, address, city et email, products}

@@ -22,14 +22,27 @@ function getTeddies() {
                 console.log(teddy)
                  //on affiche le teddy dans le HTML:
                 const container = document.getElementById("global-list")
+                let product = []
+                let btn = document.querySelector("#ajout")
+
+                btn.addEventListener('click', () => {
+                    product.push(teddy)
+                    console.log(product)
+                    addToCart(id, JSON.stringify(product)); 
+                    console.log(localStorage)    ;           
+                });
+                
+                function addToCart(key, value) {
+                    localStorage.setItem(key, value);
+                };
+
                 container.innerHTML = `<div class="col-8 mx-auto">                               
                     <div class="card ">
                     <img src="${teddy.imageUrl}" alt="" class="card-img-top">
                     <div class="card-body">
                     <h5 class="card-title">${teddy.name}</h5>
                     <p class="card-text">${teddy.description}</p>
-                    <p class="card-text"> prix : ${teddy.price}€</p>
-                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#confirm">Ajouter au panier</button>
+                    <p class="card-text"> prix : ${teddy.price}€</p>                    
                     </div>
                     </div>                               
                     </div>` 
@@ -78,13 +91,7 @@ function getTeddies() {
 
 
         // quand je clique sur les bouton j'ajoute au localstorage JSON.stringify(teddy)) :
-        let product = []
-        let btn = document.querySelector("#confirm")
-        btn.addEventListener('click', () => {
-            product.push(teddy)
-            addToCart("product", JSON.stringify(product));                
-        })
-
+        
         let store = document.querySelector("#local")
         store.addEventListener('click', () => {
 
@@ -105,9 +112,10 @@ function getTeddies() {
             
             
     
-    function addToCart(key, value) {
-        localStorage.setItem(key, value);
-    };
+    
+
+    
+
     
 
     
