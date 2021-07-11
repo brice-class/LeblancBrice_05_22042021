@@ -28,7 +28,7 @@ function getTeddies() {
                 btn.addEventListener('click', () => {
                     product.push(teddy)
                     console.log(product)
-                    addToCart(id, JSON.stringify(product)); 
+                    addToCart(id, JSON.stringify(teddy)); 
                     console.log(localStorage)    ;           
                 });
                 

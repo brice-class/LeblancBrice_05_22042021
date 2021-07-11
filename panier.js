@@ -2,40 +2,52 @@
 console.log(localStorage);
 const container = document.getElementById("global-list")
 
-let teddies = []
-let price = 0;
 
 
 
-function displayTeddies() {
+
+
+
+function recupTeddies() {
 
     
     // let product = JSON.parse(localStorage.getItem("product"));
     // console.log(product)
     // product.forEach(teddy => {
-        for(let i = 0; i < localStorage.length; i++){
+
+
+
+        let teddies = []; //j'initialise un tableau qui va acceuillir l'ensemble des teddy
+        for(let i = 0; i < localStorage.length; i++){   //je créé une boucle qui va recupéré chaque teddy du local storage 
             const key = localStorage.key(i);
             let teddy = JSON.parse(localStorage.getItem(key)); 
             console.log(teddy);
-
-    let teddyCard = `<div class="col-12 col-lg-4 ">
-                            <a href="/produit.html?id=${teddy._id}">
-                                <div class="card">
-                                    <img src="${teddy.imageUrl}" alt="" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${teddy.name}</h5>
-                                        <p class="card-text">${teddy.description}</p>
-                                        <p class="card-text"> prix : ${teddy.price}€</p>
+            teddies.push(teddy);     // j'envoie chaque teddy dans le tableau teddies       
+            };
+            
+            console.log(teddies); //  controle
+            teddies.forEach(teddy => { //boucle qui va afficher chaque teddy du tableau teddies dans le html
+                const card = `<div class="col-12 col-lg-4 ">
+                                <a href="/produit.html?id=${teddy._id}">
+                                    <div class="card">
+                                        <img src="${teddy.imageUrl}" alt="" class="card-img-top">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${teddy.name}</h5>
+                                            <p class="card-text">${teddy.description}</p>
+                                            <p class="card-text"> ${teddy.price}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>` 
+                                </a>
+                            </div>` 
+                container.innerHTML += card; 
+             });                                 
+    
 
         // teddies.push(teddy._id);
-        container.innerHTML += teddyCard; 
-    };
+        
+    
 }
-displayTeddies();
+recupTeddies();
 
 (function () {
     'use strict'
