@@ -24,8 +24,8 @@ function getTeddies() {
                 const container = document.getElementById("global-list")
                 let product = []
                 let btn = document.querySelector("#local")
-
-                
+                let acceuil = document.querySelector("#continue")
+                let cancel = document.querySelector("#cancel")
 
                 container.innerHTML =
                  `<div class="col-8 mx-auto">                               
@@ -52,12 +52,23 @@ function getTeddies() {
                       }
                     }
                     colorTeddy(teddy);
+
                     btn.addEventListener('click', () => {
                         product.push(teddy)
                         console.log(product)
                         addToCart(id, JSON.stringify(teddy)); 
-                        console.log(localStorage)    ;           
+                        console.log(localStorage);      
+                        location.href = "panier.html";     
                     });
+                    
+                        acceuil.addEventListener('click', () => {
+                        addToCart(id, JSON.stringify(teddy));    
+                        location.href = "index.html";
+                        })
+                        
+                        cancel.addEventListener('click', () => {   
+                        location.href = "index.html";
+                        })
                     
                     function addToCart(key, value) {
                         localStorage.setItem(key, value);
@@ -82,42 +93,7 @@ function getTeddies() {
     })
 }
 
-// async function displayTeddy(id) {
-//     // await code here
-//     let teddies = await getTeddies();
-//     // code below here will only execute when await makeRequest() finished loading
-//     if(teddies == null) {
-//         alert("Teddy est null");
-//     }
-//     else {
-//         const teddy = teddies.find(teddy => teddy.id === id);
-//         console.log(teddy);
-//         //on affiche le teddy dans le HTML:
-//         const container = document.getElementById("global-list")
-//         container.innerHTML = `<div class="col-8 mx-auto">                               
-//         <div class="card ">
-//         <img src="${teddy.imageUrl}" alt="" class="card-img-top">
-//         <div class="card-body">
-//         <h5 class="card-title">${teddy.name}</h5>
-//         <p class="card-text">${teddy.description}</p>
-//         <p class="card-text"> prix : ${teddy.price}€</p>
-//         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#confirm">Ajouter au panier</button>
-//         </div>
-//         </div>                               
-//         </div>` 
-
-
-        // quand je clique sur les bouton j'ajoute au localstorage JSON.stringify(teddy)) :
         
-        let store = document.querySelector("#local")
-        store.addEventListener('click', () => {
-
-        location.href = "panier.html";
-        })
-        let acceuil = document.querySelector("#acceuil")
-        acceuil.addEventListener('click', () => {
-        location.href = "index.html";
-        })
 
 // }
     

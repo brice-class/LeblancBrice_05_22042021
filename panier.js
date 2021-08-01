@@ -2,17 +2,17 @@
 console.log(localStorage);
 const container = document.getElementById("global-list")
 
-let products = []; //j'initialise un tableau qui va acceuillir l'ensemble des teddy
-let productsId = [];
+let teddies = []; //j'initialise un tableau qui va acceuillir l'ensemble des teddy
+let products = [];
 
 function recupTeddies() {     
     for(let i = 0; i < localStorage.length; i++){   //je créé une boucle qui va recupéré chaque teddy du local storage 
         const key = localStorage.key(i);
         let teddy = JSON.parse(localStorage.getItem(key)); 
-        productsId.push(teddy._id);     // j'envoie chaque teddy dans le tableau teddies   
-        products.push(teddy);     // j'envoie chaque teddy dans le tableau teddies        
+        products.push(teddy._id);     // j'envoie chaque teddy dans le tableau teddies   
+        teddies.push(teddy);     // j'envoie chaque teddy dans le tableau teddies        
         };
-    products.forEach(teddy => { //boucle qui va afficher chaque teddy du tableau teddies dans le html
+    teddies.forEach(teddy => { //boucle qui va afficher chaque teddy du tableau teddies dans le html
         const card = `<div class="col-12 col-lg-4 ">
                         <a href="/produit.html?id=${teddy._id}">
                             <div class="card">
@@ -59,6 +59,7 @@ const inputAdress = document.querySelector('#validationCustom05');
 const inputMail = document.querySelector('#email');
 const validation = document.querySelector('#validFor');
 
+
 validation.addEventListener('click', (e) => {
     e.preventDefault();
        if(e.target.value != null){
@@ -70,8 +71,8 @@ validation.addEventListener('click', (e) => {
             email: inputMail.value
         };
 
-        let order = {contact, products};
-        console.log(order);
+        let pushApi = {contact, products};
+        console.log(pushApi);
         
         if(confirm(`Voulez-vous valider la commande ?`)){
             fetch('http://localhost:3000/api/teddies/order', {
@@ -80,11 +81,11 @@ validation.addEventListener('click', (e) => {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(order)
+                body: JSON.stringify(pushApi)
 
             })
             .then(reponse => {
-                return reponse.json()
+                return reponse.json();
             })
             .then(reponse => {
                 sessionStorage.setItem('order', reponse.orderId)
@@ -94,7 +95,3 @@ validation.addEventListener('click', (e) => {
     }
 })
     
-
-// const products = [//id des teddies];
-// const contact = {firstName, lastName, address, city et email, products}
-
