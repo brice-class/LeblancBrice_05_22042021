@@ -22,7 +22,7 @@ const container = document.getElementById("global-list")
                                         <div class="card-body">
                                             <h5 class="card-title">${teddy.name}</h5>
                                             <p class="card-text">${teddy.description}</p>
-                                            <p class="card-text"> ${teddy.price}</p>
+                                            <p class="card-text"> ${teddy.price} €</p>
                                         </div>
                                     </div>
                                 </a>

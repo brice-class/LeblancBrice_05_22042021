@@ -4,13 +4,15 @@ const container = document.getElementById("global-list")
 
 let teddies = []; //j'initialise un tableau qui va acceuillir l'ensemble des teddy
 let products = [];
+let price = [];
 
 function recupTeddies() {     
     for(let i = 0; i < localStorage.length; i++){   //je créé une boucle qui va recupéré chaque teddy du local storage 
         const key = localStorage.key(i);
         let teddy = JSON.parse(localStorage.getItem(key)); 
         products.push(teddy._id);     // j'envoie chaque teddy dans le tableau teddies   
-        teddies.push(teddy);     // j'envoie chaque teddy dans le tableau teddies        
+        teddies.push(teddy);     // j'envoie chaque teddy dans le tableau teddies 
+        price.push(parseInt(teddy.price)); // commentaire a remplir.       
         };
     teddies.forEach(teddy => { //boucle qui va afficher chaque teddy du tableau teddies dans le html
         const card = `<div class="col-12 col-lg-4 ">
@@ -89,7 +91,10 @@ validation.addEventListener('click', (e) => {
             })
             .then(reponse => {
                 sessionStorage.setItem('order', reponse.orderId)
-                // location.href ="index.html"; 
+                sessionStorage.setItem('prix', price)
+                sessionStorage.setItem('prénom', contact.firstName)
+                sessionStorage.setItem('mail', contact.email)
+                location.href ="confirmation.html"; 
             })
         }
     }
