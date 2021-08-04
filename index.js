@@ -15,6 +15,7 @@ const container = document.getElementById("global-list")
              let reponse = requete.response; //on stock la réponse.  
              let articles = reponse;
              console.log(articles) ;
+             sessionStorage.setItem('article', produit)
              container.innerHTML="";
              articles.forEach(article => {
                 const card = `<div class="col-12 col-lg-4 ">
@@ -42,7 +43,7 @@ const container = document.getElementById("global-list")
 function modifierArticle(){
     var select_article = document.getElementById("article");
     console.log(select_article.value);
-    produit = select_article.value;
+    produit = select_article.value; 
     loadtData();
 }
 
