@@ -1,28 +1,28 @@
 // console.log(JSON.parse(localStorage.getItem('product')));
 console.log(localStorage);
 const container = document.getElementById("global-list")
-
-let teddies = []; //j'initialise un tableau qui va acceuillir l'ensemble des teddy
+let typeArticle = sessionStorage.getItem('article');
+let articles = []; //j'initialise un tableau qui va acceuillir l'ensemble des teddy
 let products = [];
 let price = [];
 
-function recupTeddies() {     
+function recupArticles() {     
     for(let i = 0; i < localStorage.length; i++){   //je créé une boucle qui va recupéré chaque teddy du local storage 
         const key = localStorage.key(i);
-        let teddy = JSON.parse(localStorage.getItem(key)); 
-        products.push(teddy._id);     // j'envoie chaque teddy dans le tableau teddies   
-        teddies.push(teddy);     // j'envoie chaque teddy dans le tableau teddies 
-        price.push(parseInt(teddy.price)); // commentaire a remplir.       
+        let article = JSON.parse(localStorage.getItem(key)); 
+        products.push(article._id);     // j'envoie chaque teddy dans le tableau teddies   
+        articles.push(article);     // j'envoie chaque teddy dans le tableau teddies 
+        price.push(parseInt(article.price)); // commentaire a remplir.       
         };
-    teddies.forEach(teddy => { //boucle qui va afficher chaque teddy du tableau teddies dans le html
+    articles.forEach(article => { //boucle qui va afficher chaque teddy du tableau teddies dans le html
         const card = `<div class="col-12 col-lg-4 ">
-                        <a href="/produit.html?id=${teddy._id}">
+                        <a href="/produit.html?id=${article._id}">
                             <div class="card">
-                                <img src="${teddy.imageUrl}" alt="" class="card-img-top">
+                                <img src="${article.imageUrl}" alt="" class="card-img-top">
                                 <div class="card-body">
-                                    <h5 class="card-title">${teddy.name}</h5>
-                                    <p class="card-text">${teddy.description}</p>
-                                    <p class="card-text"> ${teddy.price}</p>
+                                    <h5 class="card-title">${article.name}</h5>
+                                    <p class="card-text">${article.description}</p>
+                                    <p class="card-text"> ${article.price}</p>
                                 </div>  
                             </div>
                         </a>
@@ -31,7 +31,7 @@ function recupTeddies() {
         return products
     });                                 
 }
-recupTeddies();
+recupArticles();
 console.log(products);
 
 // (function () {
@@ -106,7 +106,7 @@ validation.addEventListener('click', (e) => {
         console.log(pushApi);
         
         if(confirm(`Voulez-vous valider la commande ?`)){
-            fetch('http://localhost:3000/api/teddies/order', {
+            fetch('http://localhost:3000/api/'+typeArticle+'/order', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
