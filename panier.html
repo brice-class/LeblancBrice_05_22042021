@@ -55,21 +55,21 @@
   <div class="container">
     <div id="forms" class="row ">
       <form class="row g-3 needs-validation" novalidate>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <label for="validationCustom01" class="form-label">First name</label>
           <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
           <div class="valid-feedback">
             Looks good!
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <label for="validationCustom02" class="form-label">Last name</label>
           <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
           <div class="valid-feedback">
             Looks good!
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
           <label for="validationCustom03" class="form-label">City</label>
           <input type="text" class="form-control" id="validationCustom03" required>
           <div class="invalid-feedback">
@@ -77,12 +77,18 @@
           </div>
         </div>
         
-        <div class="col-md-3">
+        <div class="col-md-5">
           <label for="validationCustom05" class="form-label">adress</label>
           <input type="text" class="form-control" id="validationCustom05" required>
           <div class="invalid-feedback">
             Please provide a valid adress.
           </div>
+        </div>       
+        <div class="col-md-5">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          <p id="result"></p>
         </div>
         <div class="col-12">
           <div class="form-check">
@@ -94,12 +100,6 @@
               You must agree before submitting.
             </div>
           </div>
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-          <p id="result"></p>
         </div>
         <div class="col-12">
           <button class="btn btn-primary" id="validFor" type="submit">Submit form</button>

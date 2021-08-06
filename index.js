@@ -21,7 +21,7 @@ const container = document.getElementById("global-list")
                 const card = `<div class="col-12 col-lg-4 ">
                                 <a href="/produit.html?id=${article._id}">
                                     <div class="card">
-                                        <img src="${article.imageUrl}" alt="" class="card-img-top">
+                                        <img src="${article.imageUrl}" alt="" class="card-img" style="height: 277px;>
                                         <div class="card-body">
                                             <h5 class="card-title">${article.name}</h5>
                                             <p class="card-text">${article.description}</p>
