@@ -1,16 +1,14 @@
-// 1 récupérer l'id du teddy dans l'url
+// 1 récupération l'id du teddy dans l'url
 let params = (new URL(document.location)).searchParams;
 let id = params.get('id'); 
 console.log(id)
-
 let articles = sessionStorage.getItem('article');
 console.log(articles);
 
-getTeddies()
-// displayTeddy(id)
+getArticle()
 
 // 2 faire la requete pour l'objet teddy correspondant a l'id
-function getTeddies() {
+function getArticle() {
     return new Promise(function (resolve, reject) {
         const url = "http://localhost:3000/api/";
         let requete = new XMLHttpRequest(); // créer un objet 
@@ -47,6 +45,7 @@ function getTeddies() {
                     </div>                               
                     </div>` 
 
+                    //permet a l'utilisateur de faire une selection parmis les options disponibes
                     function teinteArticle(articles){
                         if(articles === "teddies"){
                             let color = document.getElementById('colors');
@@ -115,25 +114,16 @@ function getTeddies() {
 
         
 
-// }
+
     
 
 
 
 
-            // TODO: attention AddToCart est appelé lorsqu'on clique sur le bouton 
             
             
+            
     
     
 
     
-
-    
-
-    
-
-
- 
-
-// afficher le teddy sur la page 
