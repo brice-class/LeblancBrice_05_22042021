@@ -4,10 +4,9 @@ let id = params.get('id');
 console.log(id)
 let articles = sessionStorage.getItem('article');
 console.log(articles);
-
 getArticle()
 
-// 2 faire la requete pour l'objet teddy correspondant a l'id
+// 2 faire la requete pour l'article correspondant a l'id
 function getArticle() {
     return new Promise(function (resolve, reject) {
         const url = "http://localhost:3000/api/";
@@ -19,7 +18,7 @@ function getArticle() {
             if (this.readyState === XMLHttpRequest.DONE && this.status >= 200 && this.status < 300) {
                 console.log(this.response);
                 resolve(this.response);
-                //on récupère le teddy correspondant:
+                //on récupère l'article correspondant:
                 const article = this.response.find( articles => articles._id == id);
                 console.log(article)
                  //on affiche le teddy dans le HTML:
@@ -95,7 +94,6 @@ function getArticle() {
                       
             }
             else {
-                // alert("Un probleme est intervenu, merci de revenir plus tard");
                 reject({
                     status: this.status,
                     statusText: this.statusText

@@ -1,21 +1,20 @@
-// console.log(JSON.parse(localStorage.getItem('product')));
 console.log(localStorage);
 const container = document.getElementById("global-list")
 let typeArticle = sessionStorage.getItem('article');
-let articles = []; //j'initialise un tableau qui va acceuillir l'ensemble des teddy
-let products = [];
-let price = [];
+let articles = []; //j'initialise un tableau qui va acceuillir l'ensemble des articles
+let products = []; //j'initialise un tableau qui va acceuillir les ID des articles
+let price = [];// j'initialise un tableau qui va acceuillir le prix des articles
 
 function recupArticles() {     
-    for(let i = 0; i < localStorage.length; i++){   //je créé une boucle qui va recupéré chaque teddy du local storage 
+    for(let i = 0; i < localStorage.length; i++){   //création d'une boucle qui va recupéré chaque article du local storage 
         const key = localStorage.key(i);
         let article = JSON.parse(localStorage.getItem(key)); 
-        products.push(article._id);     // j'envoie chaque teddy dans le tableau teddies   
-        articles.push(article);     // j'envoie chaque teddy dans le tableau teddies 
-        price.push(parseInt(article.price)); // commentaire a remplir.       
+        products.push(article._id);     // j'envoie chaque ID dans le tableau products   
+        articles.push(article);     // j'envoie chaque article dans le tableau articles 
+        price.push(parseInt(article.price)); // j'envoie chaque prix dans le tableau price        
         };
-    articles.forEach(article => { //boucle qui va afficher chaque teddy du tableau teddies dans le html
-        const card = `<div class="col-12 col-lg-4 ">
+    articles.forEach(article => { //boucle qui va afficher chaque article du tableau articles dans le html
+        const card = `<div class="col-12 col-lg-5 ">
                         <a href="/produit.html?id=${article._id}">
                             <div class="card">
                                 <img src="${article.imageUrl}" alt="" class="card-img-top">
@@ -34,62 +33,67 @@ function recupArticles() {
 recupArticles();
 console.log(products);
 
-// (function () {
-//     'use strict'
+
+
+
+
+const inputFirstName = document.querySelector('#validationCustom01');//
+const inputLastName = document.querySelector('#validationCustom02');//
+const inputCity = document.querySelector('#validationCustom03');// récupération du formulaire 
+const inputAdress = document.querySelector('#validationCustom05');//
+const inputMail = document.querySelector('#email');//
+const validation = document.querySelector('#validFor');//
+let isValid;//
+
+(function () {
+    'use strict'
   
-//     // Fetch all the forms we want to apply custom Bootstrap validation styles to
-//     var forms = document.querySelectorAll('.needs-validation')
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
   
-//     // Loop over them and prevent submission
-//     Array.prototype.slice.call(forms)
-//       .forEach(function (form) {
-//         form.addEventListener('submit', function (event) {
-//           if (!form.checkValidity()) {
-//             event.preventDefault()
-//             event.stopPropagation()
-//           }  
-//           form.classList.add('was-validated')
-//       }, false)
-//     })
-// })()
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('input', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }  
+          form.classList.add('was-validated')
+      }, false)
+    })
+})()
 
 
 
-
-const inputFirstName = document.querySelector('#validationCustom01');
-const inputLastName = document.querySelector('#validationCustom02');
-const inputCity = document.querySelector('#validationCustom03');
-const inputAdress = document.querySelector('#validationCustom05');
-const validation = document.querySelector('#validFor');
-let isValid;
 // expression reguliere pour email
-const inputMail = document.querySelector('#email');
+
 function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
-  }
+}
  
-  function validate() {
+function validate() {
     const $result = $("#result");
     const email = $("#email").val();
     $result.text("");
-  
+
     if (validateEmail(email)) {
-      $result.text(email + " is valid :)");
-      $result.css("color", "green");
-      isValid = true
+    $result.text(email + " is valid :)");
+    $result.css("color", "green");
+    isValid = true
     } else {
-      $result.text(email + " is not valid :(");
-      $result.css("color", "red");
-      isValid = false
+    $result.text(email + " is not valid :(");
+    $result.css("color", "red");
+    isValid = false
     }
     return false;
-  }
+}
   
-  inputMail.addEventListener("input", (e) => {
-      validate()
+inputMail.addEventListener("input", (e) => {
+    validate()
 
-  } );
+} );
 
 validation.addEventListener('click', (e) => {
     e.preventDefault();
