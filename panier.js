@@ -14,14 +14,14 @@ function recupArticles() {
         price.push(parseInt(article.price)); // j'envoie chaque prix dans le tableau price        
         };
     articles.forEach(article => { //boucle qui va afficher chaque article du tableau articles dans le html
-        const card = `<div class="col-12 col-lg-5 ">
+        const card = `<div class="col-12 col-lg-4 ">
                         <a href="/produit.html?id=${article._id}">
                             <div class="card">
-                                <img src="${article.imageUrl}" alt="" class="card-img-top">
+                                <img src="${article.imageUrl}" alt="" class="card-img" style="height: 277px;">
                                 <div class="card-body">
                                     <h5 class="card-title">${article.name}</h5>
-                                    <p class="card-text">${article.description}</p>
-                                    <p class="card-text"> ${article.price}</p>
+                                    
+                                    <p class="card-text"> ${article.price}€</p>
                                 </div>  
                             </div>
                         </a>
