@@ -5,6 +5,18 @@ let articles = []; //j'initialise un tableau qui va acceuillir l'ensemble des ar
 let products = []; //j'initialise un tableau qui va acceuillir les ID des articles
 let price = [];// j'initialise un tableau qui va acceuillir le prix des articles
 
+function ajoutCaddie(){
+    let nbPanier = 0;
+    for(let i = 0; i < localStorage.length; i++){
+        nbPanier += 1 
+        console.log(nbPanier)
+    }
+    let caddie = document.querySelector("#caddie")
+    caddie.textContent = nbPanier
+}
+ajoutCaddie()
+
+
 function recupArticles() {     
     for(let i = 0; i < localStorage.length; i++){   //création d'une boucle qui va recupéré chaque article du local storage 
         const key = localStorage.key(i);
@@ -13,34 +25,27 @@ function recupArticles() {
         articles.push(article);     // j'envoie chaque article dans le tableau articles 
         price.push(parseInt(article.price)); // j'envoie chaque prix dans le tableau price        
         };
-    articles.forEach(article => { //boucle qui va afficher chaque article du tableau articles dans le html
-        
+    articles.forEach(article => { //boucle qui va afficher chaque article du tableau articles dans le html       
         const card = `<tr>
         <td><img src="${article.imageUrl}" style= "height: 50px; width: 50 px;" /> </td>
         <td>${article.name}</td>
-        <td>In stock</td>       
-        <td id = "total${article.name}" class="text-right"> ${article.price}€</td>
+        <td>En stock</td>       
+        <td id = "total${article.name}" class="text-right"> ${article.price / 100}€</td>
         <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-    </tr>` 
-    
-       
-        
-        
-        // let prixTotal = document.querySelector("total"+article.name)
-        
+    </tr>`        
         container.innerHTML += card; 
         return products
         
     });                                 
 }
 recupArticles();
-
-
-console.log(products);
-
-
-
-
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+let prixTotal = price.reduce(reducer);
+console.log(prixTotal);
+let sousTotal= document.querySelector('#sousTotal')
+sousTotal.textContent = prixTotal /100 + "€"
+let total= document.querySelector('#total')
+total.textContent = prixTotal/100 + "€"
 
 const inputFirstName = document.querySelector('#validationCustom01');//
 const inputLastName = document.querySelector('#validationCustom02');//
@@ -69,8 +74,6 @@ let isValid;//
     })
 })()
 
-
-
 // expression reguliere pour email
 
 function validateEmail(email) {
@@ -84,7 +87,7 @@ function validate() {
     $result.text("");
 
     if (validateEmail(email)) {
-    $result.text(email + " is valid :)");
+    $result.text(email + " est valide :)");
     $result.css("color", "green");
     isValid = true
     } else {

@@ -1,13 +1,24 @@
 // 1 récupération l'id du teddy dans l'url
+let nbArticle;
 let params = (new URL(document.location)).searchParams;
 let id = params.get('id'); 
 console.log(id)
 let articles = sessionStorage.getItem('article');
 console.log(articles);
 getArticle()
+function ajoutCaddie(){
+    let nbPanier = 0;
+    for(let i = 0; i < localStorage.length; i++){
+        nbPanier += 1 
+        console.log(nbPanier)
+    }
+    let caddie = document.querySelector("#caddie")
+    caddie.textContent = nbPanier
+}
+ajoutCaddie()
 
 // 2 faire la requete pour l'article correspondant a l'id
-function getArticle() {
+async function getArticle() {
     return new Promise(function (resolve, reject) {
         const url = "http://localhost:3000/api/";
         let requete = new XMLHttpRequest(); // créer un objet 
@@ -23,27 +34,46 @@ function getArticle() {
                 console.log(article)
                  //on affiche le teddy dans le HTML:
                 const container = document.getElementById("global-list")
-                let product = []
                 let btn = document.querySelector("#local")
                 let acceuil = document.querySelector("#continue")
                 let cancel = document.querySelector("#cancel")
+              
                 console.log(typeof(articles));
 
                 container.innerHTML =
                  `<div class="col-8 mx-auto">                               
-                    <div class="card ">
+                    <div class="card shadow-lg p-3 mb-5 bg-body rounded">
                     <img src="${article.imageUrl}" alt="" class="card-img-top">
                     <div class="card-body">
                     <h5 class="card-title">${article.name}</h5>
                     <p class="card-text">${article.description}</p>
-                    <p class="card-text"> prix : ${article.price}€</p> 
+                    <p  id="prixTotal" value = ${article.price} class="card-text"> prix : ${article.price/100}€</p> 
                     <select name="colors" id="colors">
+                    </select>
+                    <select name="quantité" id="quantité" value="1" class="form-select" aria-label="Default select example">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
                     </select>
                     <button type="button" id="ajout" class="btn btn-dark" data-toggle="modal" data-target="#confirm">Ajouter au panier</button>                   
                     </div>
                     </div>                               
                     </div>` 
 
+                   
+                    inputNum = document.querySelector("#quantité")
+                    function modifPrix(){  
+                        let prixInit = document.querySelector("#prixTotal")
+                        var number = inputNum.value
+                        console.log(number)
+                       quantity = number
+                       
+                        prixInit.textContent =  (article.price/100) * number  +"€" 
+                    }
+                    inputNum.addEventListener('input' ,(e) => {
+                        modifPrix()
+                    })
+               
                     //permet a l'utilisateur de faire une selection parmis les options disponibes
                     function teinteArticle(articles){
                         if(articles === "teddies"){
@@ -70,17 +100,15 @@ function getArticle() {
                         }
                     }
                     teinteArticle(articles);
-
-                    btn.addEventListener('click', () => {
-                        product.push(article)
-                        console.log(product)
-                        addToCart(id, JSON.stringify(article)); 
+                    console.log(article)
+                    btn.addEventListener('click', () => {                        
+                        addToCart(id, JSON.stringify(article));                        
                         console.log(localStorage);      
                         location.href = "panier.html";     
                     });
                     
                         acceuil.addEventListener('click', () => {
-                        addToCart(id, JSON.stringify(article));    
+                        addToCart(id, JSON.stringify(article));                         
                         location.href = "index.html";
                         })
                         
@@ -91,6 +119,7 @@ function getArticle() {
                     function addToCart(key, value) {
                         localStorage.setItem(key, value);
                     };
+                    
                       
             }
             else {

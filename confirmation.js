@@ -23,7 +23,7 @@ function confirm(){
             `
             <div class="pt-5">
                 <h5 class="card-title"> Merci beaucoup ${userName}</h5>
-                <p class="card-text"> Votre commande n° ${order} d'un montant de ${prixTotal}€ est prise en charge</p>
+                <p class="card-text"> Votre commande n° ${order} d'un montant de ${prixTotal/100}€ est prise en charge</p>
                 <p class="card-text"> Un mail de confirmation a été envoyé a l'adresse suivante : ${mail}.</p>
             </div>          
             `

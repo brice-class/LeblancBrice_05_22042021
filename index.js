@@ -1,9 +1,21 @@
 const container = document.getElementById("global-list")
- const url = "http://localhost:3000/api/";
- let produit = "teddies";
- loadtData(); 
+const url = "http://localhost:3000/api/";
+let produit = "teddies";
 
- function loadtData(){
+function ajoutCaddie(){
+    let nbPanier = 0;
+    for(let i = 0; i < localStorage.length; i++){
+        nbPanier += 1 
+        console.log(nbPanier)
+    }
+    let caddie = document.querySelector("#caddie")
+    caddie.textContent = nbPanier
+}
+ajoutCaddie()
+
+
+loadtData(); 
+function loadtData(){
     let requete = new XMLHttpRequest(); // créer un objet 
     requete.open("get", url + produit); // premier parametre :  get / post, deuxieme parametre : url
     requete.responseType = "json"; //Nous attendons du Json
@@ -17,7 +29,7 @@ const container = document.getElementById("global-list")
                 sessionStorage.setItem('article', produit)
                 container.innerHTML="";
                 articles.forEach(article => {
-                    const card = `<div class="col-12 col-lg-4 ">
+                    const card = `<div class="col-8 col-lg-4  shadow-lg p-3 mb-5 bg-body rounded">
                                     <a href="/produit.html?id=${article._id}">
                                         <div class="card">
                                             <img src="${article.imageUrl}" alt="" class="card-img" style="height: 277px;>

@@ -25,18 +25,18 @@
               <a class="nav-link" href="index.html">Accueil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="produit.html">produit</a>
+              <a class="nav-link" href="produit.html">Produit</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="panier.html">panier</a>
+              <a class="nav-link" href="panier.html">Panier</a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="confirmation.html">confirmation</a>
+              <a class="nav-link" href="confirmation.html">Confirmation</a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <div class="input-group input-group-sm">
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Recherche...">
                 <div class="input-group-append">
                     <button type="button" class="btn btn-secondary btn-number">
                         <i class="fa fa-search"></i>
@@ -44,8 +44,8 @@
                 </div>
             </div>
             <a class="btn btn-success btn-sm ml-3" href="panier.html">
-                <i class="fa fa-shopping-cart"></i> Cart
-                <span class="badge badge-light">3</span>
+                <i class="fa fa-shopping-cart"></i> Panier
+                <span id="caddie" class="badge badge-light"></span>
             </a>
           </form>
         </div>
@@ -64,10 +64,10 @@
                       <thead>
                           <tr>
                               <th scope="col"> </th>
-                              <th scope="col">Product</th>
-                              <th scope="col">Available</th>
+                              <th scope="col">Produit</th>
+                              <th scope="col">disponibilité</th>
                               <!-- <th scope="col" class="text-center">Quantity</th> -->
-                              <th scope="col" class="text-right">Price</th>
+                              <th scope="col" class="text-right">Prix</th>
                               <th> </th>
                           </tr>
                       </thead>
@@ -79,16 +79,16 @@
                               <td></td>
                               <td></td>
                               <!-- <td></td> -->
-                              <td>Sub-Total</td>
-                              <td class="text-right">255,90 €</td>
+                              <td>Sous-Total</td>
+                              <td id="sousTotal" class="text-right"></td>
                           </tr>
                           <tr>
                               <td></td>
                               <td></td>
                               <td></td>
                               <!-- <td></td> -->
-                              <td>Shipping</td>
-                              <td class="text-right">6,90 €</td>
+                              <td>Frais de port</td>
+                              <td class="text-right">Offert</td>
                           </tr>
                           <tr>
                               <td></td>
@@ -96,7 +96,7 @@
                               <td></td>
                               <!-- <td></td> -->
                               <td><strong>Total</strong></td>
-                              <td class="text-right"><strong>346,90 €</strong></td>
+                              <td id="total" class="text-right"><strong></strong></td>
                           </tr>
                       </tbody>
                   </table>
@@ -105,7 +105,7 @@
           <div class="col mb-2">
               <div class="row">
                   <div class="col-sm-12 ">
-                      <button class="btn btn-block btn-light">Continue Shopping</button>
+                      <button onclick="location.href ='index.html'; " class="btn btn-block btn-light">Continuer vos achats</button>
                   </div>
               </div>
           </div>
@@ -113,12 +113,12 @@
   </div>   
     </div>
     <div class="container">   
-      <div id="forms" class="row">
-        <form class="col">
-          <div class="col-sm-12 col-md-7">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <div id="forms" class="d-flex flex-column">
+        <form class="d-flex flex-column bd-highlight mb-3">
+          <div class="p-2 bd-highlight">
+            <label for="exampleInputEmail1" class="form-label">Adresse e-mail </label>
             <input type="email" class="form-control" id="email">   
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>         
+            <div id="emailHelp" class="form-text">Nous ne partagerons jamais votre e-mail avec quelqu'un d'autre.</div>         
             <p id="result"></p>    
           </div>
         </form> 
@@ -126,58 +126,49 @@
     </div>
     
     <div class="container">
-      <div id="forms" class="row">
-        <form class="col needs-validation" novalidate>
-          <div class="col-sm-12 col-md-7">
-            <label for="validationCustom01" class="form-label">First name</label>
+      <div id="forms" class="d-flex flex-column">
+        <form class="d-flex flex-column bd-highlight mb-3   needs-validation" novalidate>
+          <div class="p-2 bd-highlight ">
+            <label for="validationCustom01" class="form-label">Prénom</label>
             <input type="text" class="form-control" id="validationCustom01" value="Brice" required>
             <div class="valid-feedback">
-              Looks good!
+              Parfait!
             </div>
           </div>
-          <div class="col-sm-12 col-md-7">
-            <label for="validationCustom02" class="form-label">Last name</label>
+          <div class="p-2 bd-highlight">
+            <label for="validationCustom02" class="form-label">Nom</label>
             <input type="text" class="form-control" id="validationCustom02" value="Leblanc" required>
             <div class="valid-feedback">
-              Looks good!
+              Parfait!
             </div>
           </div>
-          <div class="col-sm-12 col-md-7">
-            <label for="validationCustom03" class="form-label">City</label>
+          <div class="p-2 bd-highlight">
+            <label for="validationCustom03" class="form-label">Ville</label>
             <input type="text" class="form-control" id="validationCustom03" required>
             <div class="invalid-feedback">
-              Please provide a valid city.
+              Veuillez fournir une ville valide.
             </div>
           </div>       
-          <div class="col-sm-12 col-md-7">
-            <label for="validationCustom05" class="form-label">adress</label>
+          <div class="p-2 bd-highlight">
+            <label for="validationCustom05" class="form-label">Adresse</label>
             <input type="text" class="form-control" id="validationCustom05" required>
             <div class="invalid-feedback">
-              Please provide a valid adress.
+              Veuillez fournir une adresse valide.
             </div>
-          </div>     
-          
-         
-          <!-- <div class="col-md-5">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email">            
-            <p id="result"></p>    
-          </div> -->
-
-          
-          <div class="col-12">
+          </div>               
+          <div class="p-2 bd-highlight">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
               <label class="form-check-label" for="invalidCheck">
-                Agree to terms and conditions
+                Accepter les termes et conditions
               </label>
               <div class="invalid-feedback">
-                You must agree before submitting.
+                Vous devez accepter avant de soumettre.
               </div>
             </div>
           </div>
-          <div class="col-12">
-            <button class="btn btn-primary" id="validFor" type="submit">Submit form</button>
+          <div class="p-2 bd-highlight">
+            <button class="btn btn-primary" id="validFor" type="submit">Envoyer</button>
           </div>
         </form>
       </div>     
