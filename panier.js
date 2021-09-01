@@ -16,21 +16,22 @@ function ajoutCaddie(){
 }
 ajoutCaddie()
 
-
 function recupArticles() {     
-    for(let i = 0; i < localStorage.length; i++){   //création d'une boucle qui va recupéré chaque article du local storage 
+    for(let i = 0; i < localStorage.length; i++){   //création d'une boucle qui va recupérer chaque article du local storage 
         const key = localStorage.key(i);
         let article = JSON.parse(localStorage.getItem(key)); 
-        products.push(article._id);     // j'envoie chaque ID dans le tableau products   
-        articles.push(article);     // j'envoie chaque article dans le tableau articles 
-        price.push(parseInt(article.price)); // j'envoie chaque prix dans le tableau price        
+        products.push(article._id);     // j'envoie chaque ID dans le tableau "products"   
+        articles.push(article);     // j'envoie chaque article dans le tableau "articles" 
+        price.push(parseInt(article.price*article.quantité)); // j'envoie chaque prix dans le tableau "price"        
         };
-    articles.forEach(article => { //boucle qui va afficher chaque article du tableau articles dans le html       
+    articles.forEach(article => { //boucle qui va afficher chaque article du tableau "articles" dans le html  
+        article.price *= article.quantité   
         const card = `<tr>
         <td><img src="${article.imageUrl}" style= "height: 50px; width: 50 px;" /> </td>
         <td>${article.name}</td>
-        <td>En stock</td>       
-        <td id = "total${article.name}" class="text-right"> ${article.price / 100}€</td>
+        <td>En stock</td>      
+        <td style= "text-align : center;">${article.quantité}  </td> 
+        <td id = "total${article.name}" class="text-right"> ${article.price /100}€</td>
         <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
     </tr>`        
         container.innerHTML += card; 
@@ -55,6 +56,7 @@ const inputMail = document.querySelector('#email');//
 const validation = document.querySelector('#validFor');//
 let isValid;//
 
+// fonction bootstrap permetant de verifier le formulaire
 (function () {
     'use strict'
   
@@ -74,7 +76,7 @@ let isValid;//
     })
 })()
 
-// expression reguliere pour email
+// expression regulière pour email
 
 function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -103,6 +105,7 @@ inputMail.addEventListener("input", (e) => {
 
 } );
 
+//envoi vers l'api
 validation.addEventListener('click', (e) => {
     e.preventDefault();
        if(e.target.value != null && isValid == true){

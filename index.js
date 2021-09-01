@@ -2,6 +2,7 @@ const container = document.getElementById("global-list")
 const url = "http://localhost:3000/api/";
 let produit = "teddies";
 
+//création d'une fonction permettant de rendre dynamique le caddie
 function ajoutCaddie(){
     let nbPanier = 0;
     for(let i = 0; i < localStorage.length; i++){
@@ -13,14 +14,14 @@ function ajoutCaddie(){
 }
 ajoutCaddie()
 
-
+//fonction permettant de récupérer tous les articles d'une même catégorie et de les afficher dans le html
 loadtData(); 
 function loadtData(){
     let requete = new XMLHttpRequest(); // créer un objet 
-    requete.open("get", url + produit); // premier parametre :  get / post, deuxieme parametre : url
+    requete.open("get", url + produit); // premier paramètre :  get / post, deuxieme paramètre : url
     requete.responseType = "json"; //Nous attendons du Json
-    requete.send(); //Nous envoyons notre requete 
-    requete.onload = function(){ //lorsque la requete est prete 
+    requete.send(); //Nous envoyons notre requête 
+    requete.onload = function(){ //lorsque la requête est prête 
         if (requete.readyState === XMLHttpRequest.DONE){
             if (requete.status === 200) {
                 let reponse = requete.response; //on stock la réponse.  
@@ -36,7 +37,7 @@ function loadtData(){
                                             <div class="card-body">
                                                 <h5 class="card-title">${article.name}</h5>
                                                 <p class="card-text">${article.description}</p>
-                                                <p class="card-text"> ${article.price} €</p>
+                                                <p class="card-text"> ${article.price / 100} €</p>
                                             </div>
                                         </div>
                                     </a>
@@ -51,8 +52,8 @@ function loadtData(){
     }
 }
 
-
-function modifierCategorie(){ //permet a l'utilisateur de choisir le type d'article
+//fonction permettant a l'utilisateur de choisir la catégorie d'article
+function modifierCategorie(){ 
     var select_article = document.getElementById("article");
     console.log(select_article.value);
     produit = select_article.value; 
