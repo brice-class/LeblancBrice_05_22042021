@@ -47,7 +47,7 @@ async function getArticle() {
 
                 //on affiche le teddy dans le HTML: 
                 container.innerHTML =
-                 `<div class="col-8 mx-auto">                               
+                 `<div class="col-12 col-lg-9 mx-auto">                               
                     <div class="card shadow-lg p-3 mb-5 bg-body rounded">
                     <img src="${article.imageUrl}" alt="" class="card-img-top">
                     <div class="card-body">

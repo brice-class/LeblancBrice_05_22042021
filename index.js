@@ -30,10 +30,10 @@ function loadtData(){
                 sessionStorage.setItem('article', produit)
                 container.innerHTML="";
                 articles.forEach(article => {
-                    const card = `<div class="col-8 col-lg-4  shadow-lg p-3 mb-5 bg-body rounded">
+                    const card = `<div class="col-12 col-lg-4  shadow-lg p-3 mb-5 bg-body rounded">
                                     <a href="/produit.html?id=${article._id}">
                                         <div class="card">
-                                            <img src="${article.imageUrl}" alt="" class="card-img" style="height: 277px;>
+                                            <img src="${article.imageUrl}" alt="" class="card-img" style="height: 277px;" >
                                             <div class="card-body">
                                                 <h5 class="card-title">${article.name}</h5>
                                                 <p class="card-text">${article.description}</p>

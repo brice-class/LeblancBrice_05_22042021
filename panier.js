@@ -28,17 +28,16 @@ function recupArticles() {
         article.price *= article.quantité   
         const card = `<tr>
         <td><img src="${article.imageUrl}" style= "height: 50px; width: 50 px;" /> </td>
-        <td>${article.name}</td>
-        <td>En stock</td>      
+        <td>${article.name}</td>             
         <td style= "text-align : center;">${article.quantité}  </td> 
         <td id = "total${article.name}" class="text-right"> ${article.price /100}€</td>
-        <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-    </tr>`        
+        </tr>`        
         container.innerHTML += card; 
-        return products
-        
+        return products        
     });                                 
 }
+
+
 recupArticles();
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
 let prixTotal = price.reduce(reducer);
